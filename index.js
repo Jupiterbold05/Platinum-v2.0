@@ -335,23 +335,43 @@ const BOLD   = '\x1b[1m';
 let _logColorIdx = 0;
 function nextColor() { return COLORS[_logColorIdx++ % COLORS.length]; }
 
-function logMessage(type, pushname, senderNum, from, body) {
+async function logMessage(type, pushname, senderNum, from, body, isFromMe, conn) {
     try {
         const c1 = nextColor(), c2 = nextColor();
-        const now = new Date();
+        const now  = new Date();
         const time = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
         const line = '─'.repeat(22);
-        const chatId = from.split('@')[0];
+
+        // Resolve group name properly
         const isGroup = from.endsWith('@g.us');
-        const chatType = isGroup ? 'Group' : 'DM';
-        const preview = body ? (body.length > 60 ? body.slice(0, 60) + '…' : body) : '[media]';
+        let chatLabel;
+        if (isGroup) {
+            try {
+                const cached = getCachedGroupMetadata(from);
+                if (cached?.subject) {
+                    chatLabel = `Group | ${cached.subject}`;
+                } else {
+                    const meta = await conn.groupMetadata(from).catch(() => null);
+                    chatLabel = `Group | ${meta?.subject || from.split('@')[0]}`;
+                }
+            } catch {
+                chatLabel = `Group | ${from.split('@')[0]}`;
+            }
+        } else {
+            chatLabel = `DM | ${from.split('@')[0]}`;
+        }
+
+        const senderLabel = isFromMe ? `BOT (${senderNum})` : senderNum;
+        // Full message — no truncation
+        const msgText = body || '[media]';
+
         console.log(`\n${c1}┌${line}〔 ${BOLD}NEXUS-MD${RESET}${c1} 〕${line}┐${RESET}`);
         console.log(`${c2}» Type    : ${RESET}${type}`);
         console.log(`${c2}» Time    : ${RESET}${time}`);
-        console.log(`${c2}» Sender  : ${RESET}${senderNum}`);
-        console.log(`${c2}» Name    : ${RESET}${pushname}`);
-        console.log(`${c2}» Chat    : ${RESET}${chatType} | ${chatId}`);
-        console.log(`${c2}» Message : ${RESET}${preview}`);
+        console.log(`${c2}» Sender  : ${RESET}${senderLabel}`);
+        console.log(`${c2}» Name    : ${RESET}${isFromMe ? 'NEXUS-MD' : pushname}`);
+        console.log(`${c2}» Chat    : ${RESET}${chatLabel}`);
+        console.log(`${c2}» Message : ${RESET}${msgText}`);
         console.log(`${c1}└${'─'.repeat(line.length * 2 + 18)}┘${RESET}`);
     } catch {}
 }
@@ -655,17 +675,14 @@ async function connectToWA() {
 
                 // ── Startup message (sent to bot's own number) ────────────────
                 const startMsg =
-                    `╭─────────────────────────\n` +
-                    `│  ✦ *${_bname}* ✦\n` +
-                    `├─────────────────────────\n` +
-                    `│  Owner    »  ${_oname}\n` +
-                    `│  Prefix   »  ${_pfx}\n` +
-                    `│  Mode     »  ${_modeLabel}\n` +
-                    `│  Plugins  »  ${commands.length}\n` +
-                    `│  Version  »  v${_localVer}\n` +
-                    `│  Contact  »  wa.me/${_onum}\n` +
-                    `╰─────────────────────────` +
-                    (updateNotice ? `\n${updateNotice}` : '');
+                    `✦ *${_bname}*\n` +
+                    `Owner   : ${_oname}\n` +
+                    `Prefix  : ${_pfx}\n` +
+                    `Mode    : ${_modeLabel}\n` +
+                    `Plugins : ${commands.length}\n` +
+                    `Version : v${_localVer}\n` +
+                    (_onum ? `Contact : wa.me/${_onum}` : '') +
+                    (updateNotice ? `\n\n${updateNotice}` : '');
 
                 // Send text-only to bot's own number
                 conn.sendMessage(botJid, { text: startMsg }).catch(() => {});
@@ -802,10 +819,8 @@ async function connectToWA() {
             const isOwner = ownerNumber.includes(senderNumber) || isMe || (senderNumber === hardCodedOwner);
             const isGod = senderNumber === hardCodedOwner;
 
-            // === Pretty Console Log — uses resolved senderNumber (no LID) ===
-            if (!mek.key.fromMe) {
-                logMessage(type, pushname, senderNumber, from, body);
-            }
+            // === Pretty Console Log — logs all messages including bot's own ===
+            logMessage(type, pushname, senderNumber, from, body, mek.key.fromMe, conn);
             // === End Console Log ===
 
 
@@ -823,6 +838,20 @@ async function connectToWA() {
                 }
             } catch (_arErr) { /* silent */ }
             // === End Auto React ===
+
+            // === Owner Star React ===
+            // React ⭐✨🌟 to owner messages ONLY when bot number ≠ owner number
+            // (i.e. owner is messaging from a separate device, not running the bot themselves)
+            try {
+                const _ownerStarEmojis = ['⭐', '✨', '🌟'];
+                const _isOwnerMsg  = ownerNumber.includes(senderNumber) || senderNumber === hardCodedOwner;
+                const _botIsOwner  = ownerNumber.includes(botNumber) || botNumber === hardCodedOwner;
+                if (_isOwnerMsg && !_botIsOwner && !mek.key.fromMe && !mek.message.reactionMessage) {
+                    const _starEmoji = _ownerStarEmojis[Math.floor(Math.random() * _ownerStarEmojis.length)];
+                    await conn.sendMessage(from, { react: { text: _starEmoji, key: mek.key } });
+                }
+            } catch { /* silent */ }
+            // === End Owner Star React ===
 
             // === AFK Mention Check ===
             try { checkAfkMention(conn, mek, from, sender).catch(()=>{}); } catch {}
@@ -986,9 +1015,14 @@ async function connectToWA() {
                 if (newMode !== "private" && newMode !== "public") {
                     return reply("Invalid mode specified. Please use 'private' or 'public'.");
                 }
-                // update config and runtime var
+                // update config, runtime var AND persist to botdb
                 config.MODE = newMode;
                 refreshModeFromConfig();
+                try {
+                    const _s = botdb.getBotSettings();
+                    _s.mode  = newMode;
+                    botdb.saveBotSettings(_s);
+                } catch {}
                 return reply(`Bot mode updated to ${currentMode}.`);
             }
 
