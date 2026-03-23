@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: nexus-md
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node index.js
+    healthCheckPath: /health
+    envVars:
+      - key: SESSION_ID
+        sync: false
+      - key: OWNER_NUMBER
+        sync: false
+      - key: BOT_NAME
+        value: NEXUS-MD
+      - key: PREFIX
+        value: ":"
+      - key: MODE
+        value: public
+      - key: SELF_URL
+        fromService:
+          type: web
+          name: nexus-md
+          property: host

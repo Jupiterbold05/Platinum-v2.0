@@ -1,0 +1,23 @@
+{
+  "name": "NEXUS-MD",
+  "description": "NEXUS-MD WhatsApp Bot",
+  "repository": "https://github.com/Jupiterbold05/Platinum-v2.0",
+  "logo": "https://files.catbox.moe/9nrr5j.jpg",
+  "keywords": ["whatsapp", "bot", "nexus"],
+  "env": {
+    "SESSION_ID":     { "description": "Your NEXUS-MD= session ID", "required": true },
+    "OWNER_NUMBER":   { "description": "Your WhatsApp number (e.g. 2348012345678)", "required": true },
+    "OWNER_NAME":     { "description": "Your name", "required": false, "value": "Owner" },
+    "BOT_NAME":       { "description": "Bot name", "required": false, "value": "NEXUS-MD" },
+    "PREFIX":         { "description": "Command prefix", "required": false, "value": ":" },
+    "MODE":           { "description": "public or private", "required": false, "value": "public" },
+    "MONGO_URI":      { "description": "MongoDB URI (optional)", "required": false },
+    "SELF_URL":       { "description": "Your Heroku/Render app URL for keep-alive", "required": false }
+  },
+  "buildpacks": [
+    { "url": "heroku/nodejs" }
+  ],
+  "formation": {
+    "web": { "quantity": 1, "size": "free" }
+  }
+}
