@@ -266,7 +266,7 @@ cast({
 // SCHEDULE OPEN / CLOSE
 // ─────────────────────────────────────────────────────────────────────
 
-/*cast({
+cast({
   pattern: "scheduleopen",
   alias: ["setopen", "openat"],
   desc: "Schedule group to open at a time or after a delay. e.g. /scheduleopen 19:00 or /scheduleopen 30min",
@@ -404,7 +404,7 @@ cast({
   if (s.closeJob || s.closeTimer) lines.push(`✅ Close: *set*`);
   lines.push(`\nUse /cancelschedule to remove.`);
   return reply(lines.join('\n'));
-});*/
+});
 
 // ─────────────────────────────────────────────────────────────────────
 // UTILITY
