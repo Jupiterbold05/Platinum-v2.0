@@ -1,0 +1,4 @@
+{
+  "version": "3.0.1",
+  "changelog": "📌 Consolidated plugin structure\n📌 cast() command wrapper\n📌 All storage migrated to SQLite\n🚀 NEXUS-MD rebranded"
+}
