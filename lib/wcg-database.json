@@ -1,0 +1,28 @@
+{
+  "120363424351646293@g.us": {
+    "mode": "easy",
+    "host": "236004761981099@lid",
+    "players": [],
+    "waiting": false,
+    "createdAt": 1771963626780,
+    "turn": 0,
+    "lastWord": "",
+    "aiEnabled": true
+  },
+  "98668837355618@lid": {
+    "mode": "easy",
+    "host": "2347073082975@s.whatsapp.net",
+    "players": [],
+    "waiting": false,
+    "createdAt": 1772324071001,
+    "level": 1,
+    "acceptedCount": 0,
+    "lastStartLetter": "f",
+    "words": [],
+    "byPlayer": {},
+    "wordCounts": {},
+    "turn": 0,
+    "lastWord": "",
+    "aiEnabled": true
+  }
+}
