@@ -1,1 +1,672 @@
-'use strict';const a18_0x5a63e6=a18_0xb298;(function(_0x5be3b7,_0x3b9781){const _0x452e86=a18_0xb298,_0x37d565=_0x5be3b7();while(!![]){try{const _0x49f680=-parseInt(_0x452e86(0xec))/0x1*(parseInt(_0x452e86(0x137))/0x2)+parseInt(_0x452e86(0x109))/0x3*(-parseInt(_0x452e86(0x114))/0x4)+-parseInt(_0x452e86(0x194))/0x5+-parseInt(_0x452e86(0x168))/0x6*(-parseInt(_0x452e86(0x11b))/0x7)+-parseInt(_0x452e86(0x16f))/0x8+-parseInt(_0x452e86(0xef))/0x9*(parseInt(_0x452e86(0xee))/0xa)+-parseInt(_0x452e86(0x159))/0xb*(-parseInt(_0x452e86(0x16a))/0xc);if(_0x49f680===_0x3b9781)break;else _0x37d565['push'](_0x37d565['shift']());}catch(_0x2a1ce2){_0x37d565['push'](_0x37d565['shift']());}}}(a18_0x28c9,0xa8a5d));const {cast,makeSmartQuote,applyFont}=require(a18_0x5a63e6(0x12f)),config=require('../config'),botdb=require(a18_0x5a63e6(0x158)),fetch=require(a18_0x5a63e6(0x191)),axios=require(a18_0x5a63e6(0x187)),{downloadMediaMessage}=require(a18_0x5a63e6(0x126)),{isSudo,addSudo,removeSudo,listSudo}=require(a18_0x5a63e6(0x158)),ANTICALL_MSG='Hello!\x20This\x20is\x20*'+(config['BOT_NAME']||a18_0x5a63e6(0x1a4))+a18_0x5a63e6(0xe0)+a18_0x5a63e6(0x170)+a18_0x5a63e6(0x141);function loadSettings(){return{};}function saveSettings(){}function getMode(_0x7f3be6){const _0x5d9742=a18_0x5a63e6;return botdb[_0x5d9742(0x111)](_0x7f3be6);}function setMode(_0x5183a3,_0xc6a666){const _0x211c3f=a18_0x5a63e6;botdb[_0x211c3f(0x193)](_0x5183a3,_0xc6a666);}const warnMap={};cast({'pattern':a18_0x5a63e6(0xea),'alias':['callblock',a18_0x5a63e6(0x176)],'desc':'Configure\x20anticall\x20—\x20block\x20all\x20calls\x20or\x20by\x20country\x20code','category':a18_0x5a63e6(0x10d),'use':a18_0x5a63e6(0x12a),'filename':__filename},async(_0x371f99,_0x5a7b46,_0x5f69c1,{from:_0x2b1338,q:_0x1ff7df,botNumber:_0x36db4d,isOwner:_0x1dccd6,reply:_0x2cb339})=>{const _0x40e6e4=a18_0x5a63e6;if(!_0x1dccd6)return _0x2cb339('🚫\x20Owner\x20only.');const _0xc460c6=_0x36db4d,_0x5cff87=getMode(_0xc460c6)||_0x40e6e4(0x15b),_0x4c2121=_0x1ff7df?_0x1ff7df['toLowerCase']()[_0x40e6e4(0x112)]():'';if(_0x4c2121===_0x40e6e4(0x15c)||_0x4c2121===_0x40e6e4(0xf6)||_0x4c2121===_0x40e6e4(0xe5)){if(_0x5cff87===_0x40e6e4(0x15b))return _0x2cb339('*AntiCall\x20is\x20already\x20disabled!*');return getMode(_0xc460c6)===_0x40e6e4(0x15b),saveSettings(settings),_0x2cb339(_0x40e6e4(0x186));}if(!_0x4c2121){const _0x273a62=_0x5cff87===_0x40e6e4(0x15b)?'Not\x20set\x20/\x20Disabled':_0x40e6e4(0x181)+_0x5cff87+'*';return _0x2cb339(_0x40e6e4(0x179)+_0x273a62+_0x40e6e4(0x183));}if(_0x4c2121===_0x40e6e4(0x19b))return getMode(_0xc460c6)===_0x40e6e4(0x19b),saveSettings(settings),_0x2cb339(_0x40e6e4(0x115));const _0x3562c4=_0x4c2121[_0x40e6e4(0x182)](',')['map'](_0x22fad5=>parseInt(_0x22fad5[_0x40e6e4(0x112)]()))['filter'](_0x39fa17=>!isNaN(_0x39fa17));if(!_0x3562c4['length'])return _0x2cb339('*❌\x20Invalid\x20country\x20codes.*\x0aExample:\x20:anticall\x20212,91,231');getMode(_0xc460c6)===_0x3562c4[_0x40e6e4(0x19a)](','),saveSettings(settings),_0x2cb339(_0x40e6e4(0x167)+getMode(_0xc460c6)+'*');});function registerAntiCall(_0x498993){const _0x5c9d02=a18_0x5a63e6;_0x498993['ev']['on'](_0x5c9d02(0x190),async _0x4b2a27=>{const _0x489b5e=_0x5c9d02;for(const _0x53386a of _0x4b2a27){try{if(_0x53386a[_0x489b5e(0x103)]!==_0x489b5e(0x13e))continue;const _0x32086d=_0x498993[_0x489b5e(0x18e)]['id'][_0x489b5e(0x182)](':')[0x0],_0x2428b7=getMode(_0x32086d)||_0x489b5e(0x15b);if(_0x2428b7==='false')continue;const _0x260fc6=_0x53386a[_0x489b5e(0x14f)]||'';let _0x2d73a2=![];if(_0x2428b7===_0x489b5e(0x19b))_0x2d73a2=!![];else{const _0x361cff=_0x2428b7[_0x489b5e(0x182)](',')[_0x489b5e(0x14b)](_0x16b0bb=>_0x16b0bb[_0x489b5e(0x112)]());_0x2d73a2=_0x361cff[_0x489b5e(0x139)](_0xf92b6=>_0x260fc6[_0x489b5e(0x108)](_0xf92b6));}if(!_0x2d73a2)continue;await _0x498993[_0x489b5e(0x162)](_0x53386a['id'],_0x53386a[_0x489b5e(0x14f)]);if(!warnMap[_0x260fc6])warnMap[_0x260fc6]={'warn':0x0};warnMap[_0x260fc6][_0x489b5e(0x135)]<0x2&&await _0x498993[_0x489b5e(0x16c)](_0x260fc6,{'text':ANTICALL_MSG},{'quoted':mek}),warnMap[_0x260fc6][_0x489b5e(0x135)]++,await _0x498993['sendMessage'](_0x260fc6,{'text':'*_'+warnMap[_0x260fc6]['warn']+'\x20Call\x20rejected\x20from\x20@'+_0x260fc6[_0x489b5e(0x182)]('@')[0x0]+'..!!_*','mentions':[_0x260fc6]},{'quoted':mek});}catch(_0x3bfb8b){console[_0x489b5e(0x17c)]('anticall\x20error:',_0x3bfb8b['message']);}}}),console[_0x5c9d02(0x101)]('✅\x20AntiCall\x20listener\x20registered');}const KEY=a18_0x5a63e6(0xfd);function a18_0xb298(_0x335ce1,_0x48b700){_0x335ce1=_0x335ce1-0xdc;const _0x28c97f=a18_0x28c9();let _0xb29878=_0x28c97f[_0x335ce1];return _0xb29878;}function isEnabled(_0x4157e9){const _0x247008=a18_0x5a63e6;try{return botdb[_0x247008(0x188)](_0x247008(0xe7)+_0x4157e9,_0x247008(0x15b))===_0x247008(0xed);}catch(_0xeea4d9){return![];}}function setEnabled(_0x274c73,_0x4da0f5){const _0x178f2b=a18_0x5a63e6;try{botdb[_0x178f2b(0x11d)](_0x178f2b(0xe7)+_0x274c73,_0x4da0f5?_0x178f2b(0xed):_0x178f2b(0x15b));}catch(_0x476d4a){}}function a18_0x28c9(){const _0x5dcc0c=['94AUsfoR','viewOnceMessageV2Extension','some',':*\x20`','❌\x20This\x20command\x20is\x20for\x20the\x20bot\x20owner\x20only.','removesudo','[restart]\x20pm2\x20error:','offer','delete','setvar','Please\x20send\x20a\x20text\x20message\x20instead.\x20👸','contextInfo','Generate\x20a\x20NEXUS-MD\x20session\x20pairing\x20code\x20for\x20a\x20number','\x20granted\x20sudo\x20access.','*Failed\x20to\x20reach\x20Heroku.\x20Check\x20HEROKU_APP_NAME\x20&\x20HEROKU_API_KEY.*','PATCH','*...','4.\x20Choose\x20\x22Link\x20with\x20phone\x20number\x22\x0a','$1-','application/json','map','*Sudo\x20Users\x20(','HEROKU_APP_NAME','indexOf','from','sender','✅\x20*','HEROKU_API_KEY','❌\x20Invalid\x20number.\x20Include\x20country\x20code\x20e.g.\x20`2348012345678`','toLocaleTimeString','mimetype','✅\x20AntiViewOnce\x20listener\x20registered','caption','../lib/botdb','5291aJUMqJ','*Time:*\x20','false','off','OFF\x20❌','Turn\x20on/off\x20auto\x20ViewOnce\x20downloader','Message','Restart\x20the\x20bot','GET','rejectCall','viewOnceMessage','allvar','PREFIX','exit','*✅\x20AntiCall\x20set\x20—\x20blocking\x20calls\x20from\x20country\x20codes:\x20','6ohRdFU','restart','74568jZBAMI','audio','sendMessage','✅\x20@','⚠️\x20Could\x20not\x20DM\x20+','2312072IfKDTz','Sorry,\x20I\x20cannot\x20receive\x20calls\x20at\x20this\x20time.\x0a','*AntiViewOnce\x20is\x20already\x20disabled\x20👸❤️🧸*','*AntiViewOnce\x20is\x20currently\x20','*Format:*\x20Country\x20code\x20+\x20number,\x20digits\x20only.\x0a\x0a','mentionedJid','✅\x20User\x20already\x20has\x20sudo\x20access.','blockcall','has','replace','*AntiCall\x20Status:*\x20','❌\x20Owner\x20only.','*Number:*\x20+','error','Save\x20Status\x20Error:','getvar','image','download','Active\x20—\x20blocking:\x20*','split','\x0a\x0a*Usage:*\x0a:anticall\x20all\x20→\x20block\x20all\x20calls\x0a:anticall\x20212,91\x20→\x20block\x20by\x20country\x20code\x0a:anticall\x20off\x20→\x20disable','_Enter\x20this\x20in:_\x0a','Bearer\x20','*✅\x20AntiCall\x20disabled\x20successfully!*','axios','kvGet','*Failed\x20to\x20set\x20var.*','antivv','No\x20sudo\x20users\x20set.','sudolist','Update\x20an\x20existing\x20Heroku\x20var\x20(KEY:value)','user','newvar','call','node-fetch','remoteJid','setAntiCall','6435915YcWjJh','exports','ON\x20✅','Get\x20view\x20once\x20(send\x20to\x20DM).','⚠️\x20Mention,\x20reply,\x20or\x20provide\x20a\x20number.','child_process','join','all','unsudo','now','*.\x20Please\x20wait.','📱\x20*How\x20to\x20use:*\x0a','🚫\x20Owner\x20only.','avv','message','*✅\x20PAIRING\x20CODE\x20GENERATED*\x0a\x0a','NEXUS-MD','quotedMessage','buffer','find','application/vnd.heroku+json;\x20version=3','*\x0a\x0a','_The\x20user\x20will\x20also\x20receive\x20their\x20session\x20ID\x20in\x20DMs\x20once\x20linked._','viewOnceMessageV2','*Example:*\x20','extendedTextMessage','disable','*✅\x20AntiViewOnce\x20successfully\x20enabled\x20👸❤️🧸*','antiviewonce:','No\x20code\x20returned\x20from\x20server','❌\x20Error:\x20','anticall','*\x20set\x20to\x20`','4105pvnbJM','true','1849180qalIbx','63sFkPcK','viewOnce','slice','includes','):*\x0a','*Usage:*\x20`/pair\x202348012345678`\x0a','status@broadcast','deact','setvar\x20PREFIX:/','Unknown\x20error','/code?number=','Add\x20a\x20Heroku\x20var\x20(KEY:value)','newvar\x20MODE:public','Generate\x20a\x20pairing\x20code\x20for\x20any\x20WhatsApp\x20number.\x0a\x0a','antiviewonce','[restart]\x20heroku\x20error:','toUpperCase','Unknown','log','act','status','Grant\x20sudo\x20access\x20to\x20a\x20user\x20(mention,\x20reply\x20or\x20number)','*\x20updated\x20to\x20`','_Your\x20session\x20ID\x20will\x20be\x20sent\x20here\x20automatically\x20once\x20linked._','videoMessage','startsWith','75171LVYgfB','2.\x20Go\x20to\x20Linked\x20Devices\x0a','quoted','json','owner','https://repo-jjl7.onrender.com','data','👑\x20*NEXUS-MD\x20—\x20Pairing\x20Code*\x0a\x0a','getAntiCall','trim','*Failed\x20to\x20update\x20var.*','4rBYrgo','*✅\x20AntiCall\x20set\x20to\x20block\x20ALL\x20calls!*','antiviewonce\x20listener\x20error:','✅\x20Sudo\x20access\x20revoked\x20for\x20@','♻️\x20*Restarting\x20NEXUS-MD...*','List\x20all\x20sudo\x20users','key','5533199lcjwbX','set','kvSet','1.\x20Open\x20WhatsApp\x0a','Your\x20pairing\x20code\x20is:\x0a\x0a','getvar\x20PREFIX','audioMessage','fakeObj','WhatsApp\x20→\x20Linked\x20Devices\x20→\x20Link\x20with\x20phone\x20number','getpair','video','@whiskeysockets/baileys','*Sender:*\x20@','@s.whatsapp.net','ptt','<all\x20|\x20212,91\x20|\x20off>','*Failed\x20to\x20reach\x20Heroku.*','`\x0a\x0a','pm2\x20restart\x20all','*\x0aUse\x20:antiviewonce\x20on/off','../cast','save','5.\x20Enter\x20the\x20code\x20above\x0a\x0a','length','3.\x20Tap\x20\x22Link\x20a\x20Device\x22\x0a','\x20—\x20Heroku\x20Vars*\x0a\x0a','warn','imageMessage'];a18_0x28c9=function(){return _0x5dcc0c;};return a18_0x28c9();}cast({'pattern':a18_0x5a63e6(0xfd),'alias':[a18_0x5a63e6(0x18a),a18_0x5a63e6(0x1a1)],'desc':a18_0x5a63e6(0x15e),'category':a18_0x5a63e6(0x10d),'use':'<on/off>','filename':__filename},async(_0x5557ae,_0x19d190,_0x539a0c,{from:_0x5e4868,q:_0x9a2a9b,botNumber:_0x157c83,isOwner:_0x561b81,reply:_0x2d00ba})=>{const _0x615057=a18_0x5a63e6;if(!_0x561b81)return _0x2d00ba(_0x615057(0x1a0));const _0x27bc5a=_0x9a2a9b?_0x9a2a9b['toLowerCase']()[_0x615057(0x112)]():'',_0x75eaf2=isEnabled(_0x157c83);if(!_0x27bc5a)return _0x2d00ba(_0x615057(0x172)+(_0x75eaf2?_0x615057(0x196):_0x615057(0x15d))+_0x615057(0x12e));if(['on','enable',_0x615057(0x102)][_0x615057(0xf2)](_0x27bc5a)){if(_0x75eaf2)return _0x2d00ba('*AntiViewOnce\x20is\x20already\x20enabled\x20👸❤️🧸*');return setEnabled(_0x157c83,!![]),_0x2d00ba(_0x615057(0xe6));}if([_0x615057(0x15c),_0x615057(0xe5),_0x615057(0xf6)][_0x615057(0xf2)](_0x27bc5a)){if(!_0x75eaf2)return _0x2d00ba(_0x615057(0x171));return setEnabled(_0x157c83,![]),_0x2d00ba('*✅\x20AntiViewOnce\x20successfully\x20disabled\x20👸❤️🧸*');}_0x2d00ba('*Use\x20on/off\x20to\x20enable/disable\x20AntiViewOnce!*');});function registerAntiViewOnce(_0x4394c8){const _0x5d2792=a18_0x5a63e6;_0x4394c8['ev']['on']('messages.upsert',async({messages:_0x2cf103})=>{const _0x3e6cf9=a18_0xb298;for(const _0x4394bf of _0x2cf103){try{if(!_0x4394bf['message'])continue;const _0x3e9003=_0x4394c8[_0x3e6cf9(0x18e)]?.['id']?.[_0x3e6cf9(0x182)](':')[0x0];if(!isEnabled(_0x3e9003))continue;const _0x5847aa=[_0x3e6cf9(0x163),_0x3e6cf9(0xe2),_0x3e6cf9(0x138)],_0x9ae1f8=_0x5847aa[_0x3e6cf9(0xde)](_0x55132c=>_0x4394bf['message'][_0x55132c]);if(!_0x9ae1f8)continue;if(_0x4394bf[_0x3e6cf9(0x11a)]?.['fromMe'])continue;const _0x25881a=_0x4394bf[_0x3e6cf9(0x1a2)][_0x9ae1f8]?.[_0x3e6cf9(0x1a2)]||_0x4394bf['message'][_0x9ae1f8],_0x2cd9cb=['imageMessage',_0x3e6cf9(0x107),_0x3e6cf9(0x121)][_0x3e6cf9(0xde)](_0x2979b6=>_0x25881a?.[_0x2979b6]);if(!_0x2cd9cb)continue;const _0x7b753c=_0x4394bf['key']['participant']||_0x4394bf[_0x3e6cf9(0x11a)][_0x3e6cf9(0x192)]||_0x3e6cf9(0x100),_0x2f3755=_0x4394bf['key'][_0x3e6cf9(0x192)],_0x4a4326=_0x3e9003+'@s.whatsapp.net',_0x17e24b=await downloadMediaMessage({'key':_0x4394bf[_0x3e6cf9(0x11a)],'message':{[_0x2cd9cb]:_0x25881a[_0x2cd9cb]}},_0x3e6cf9(0xdd),{},{'logger':undefined,'reuploadRequest':_0x4394c8['updateMediaMessage']}),_0xed186d=_0x2cd9cb[_0x3e6cf9(0x178)](_0x3e6cf9(0x15f),''),_0x49655e='*[VIEWONCE\x20FOUND\x20👀\x20100%\x20DOWNLOADED]*\x0a\x0a'+(_0x3e6cf9(0x127)+_0x7b753c[_0x3e6cf9(0x182)]('@')[0x0]+'\x0a')+('*Chat:*\x20'+_0x2f3755+'\x0a')+(_0x3e6cf9(0x15a)+new Date()[_0x3e6cf9(0x154)]());await _0x4394c8[_0x3e6cf9(0x16c)](_0x4a4326,{[_0xed186d]:_0x17e24b,'caption':_0x49655e,'mimetype':_0x25881a[_0x2cd9cb]?.[_0x3e6cf9(0x155)],'mentions':[_0x7b753c]});}catch(_0x5cfd52){console[_0x3e6cf9(0x17c)](_0x3e6cf9(0x116),_0x5cfd52[_0x3e6cf9(0x1a2)]);}}}),console[_0x5d2792(0x101)](_0x5d2792(0x156));}const PAIR_SERVER=process.env.PAIR_SERVER_URL||a18_0x5a63e6(0x10e),pendingSessions=new Map();setInterval(()=>{const _0x1a5788=a18_0x5a63e6,_0x33b38c=Date['now']()-0xa*0x3c*0x3e8;for(const [_0x137e12,_0x663c2e]of pendingSessions){if(_0x663c2e['ts']<_0x33b38c)pendingSessions[_0x1a5788(0x13f)](_0x137e12);}},0xa*0x3c*0x3e8),cast({'pattern':'pair','alias':[a18_0x5a63e6(0x124),'getsession','pairsession'],'desc':a18_0x5a63e6(0x143),'category':a18_0x5a63e6(0x10d),'react':'🔗','filename':__filename},async(_0x166d76,_0xa9d3c6,_0x558c4c,{q:_0x40134d,reply:_0xffe5f8,isOwner:_0x5f2b30,from:_0x17448b})=>{const _0x4152f5=a18_0x5a63e6;if(!_0x5f2b30)return _0xffe5f8(_0x4152f5(0x13b));const _0x2a6493=(_0x40134d||'')[_0x4152f5(0x112)]()[_0x4152f5(0x178)](/\D/g,'');if(!_0x2a6493||_0x2a6493[_0x4152f5(0x132)]<0xa)return _0xffe5f8('*🔗\x20NEXUS-MD\x20—\x20PAIR\x20SESSION*\x0a\x0a'+_0x4152f5(0xfc)+_0x4152f5(0xf4)+_0x4152f5(0x173)+_0x4152f5(0xe1));if(_0x2a6493[_0x4152f5(0x132)]>0xf)return _0xffe5f8(_0x4152f5(0x153));if(pendingSessions[_0x4152f5(0x177)](_0x2a6493))return _0xffe5f8('⚠️\x20A\x20pairing\x20request\x20is\x20already\x20running\x20for\x20*+'+_0x2a6493+_0x4152f5(0x19e));pendingSessions[_0x4152f5(0x11c)](_0x2a6493,{'ts':Date[_0x4152f5(0x19d)]()}),await _0xffe5f8('⏳\x20Generating\x20pairing\x20code\x20for\x20*+'+_0x2a6493+_0x4152f5(0x147));try{const _0x27b4de=await axios['get'](PAIR_SERVER+_0x4152f5(0xf9)+_0x2a6493,{'timeout':0x7530}),{code:_0xca4454}=_0x27b4de[_0x4152f5(0x10f)];if(!_0xca4454)throw new Error(_0x4152f5(0xe8));const _0x3d30dc=_0xca4454[_0x4152f5(0x178)](/(.{4})(?=.)/g,_0x4152f5(0x149));await _0xffe5f8(_0x4152f5(0x1a3)+(_0x4152f5(0x17b)+_0x2a6493+'\x0a')+('*Code:*\x20`'+_0x3d30dc+_0x4152f5(0x12c))+_0x4152f5(0x184)+_0x4152f5(0x123));try{const _0x3b50c3=_0x2a6493+_0x4152f5(0x128);await _0x166d76['sendMessage'](_0x3b50c3,{'text':_0x4152f5(0x110)+_0x4152f5(0x11f)+('*'+_0x3d30dc+_0x4152f5(0xe0))+_0x4152f5(0x19f)+_0x4152f5(0x11e)+_0x4152f5(0x10a)+_0x4152f5(0x133)+_0x4152f5(0x148)+_0x4152f5(0x131)+_0x4152f5(0x106)},{'quoted':_0xa9d3c6});}catch{await _0xffe5f8(_0x4152f5(0x16e)+_0x2a6493+'\x20directly\x20—\x20give\x20them\x20the\x20code\x20manually.');}}catch(_0x49c391){const _0x30ef61=_0x49c391?.['response']?.[_0x4152f5(0x10f)]?.[_0x4152f5(0x17c)]||_0x49c391[_0x4152f5(0x1a2)]||_0x4152f5(0xf8);await _0xffe5f8('❌\x20Failed\x20to\x20generate\x20pairing\x20code:\x20'+_0x30ef61);}finally{pendingSessions[_0x4152f5(0x13f)](_0x2a6493);}});const {commands}=require(a18_0x5a63e6(0x12f)),{sleep}=require('../lib/functions');cast({'pattern':a18_0x5a63e6(0x169),'alias':['reboot'],'desc':a18_0x5a63e6(0x160),'category':a18_0x5a63e6(0x10d),'filename':__filename},async(_0x3528d5,_0x294643,_0x3b1fc7,{isOwner:_0x4eb596,reply:_0x51a8d8})=>{const _0xa8c8c9=a18_0x5a63e6;if(!_0x4eb596)return _0x51a8d8('⛔\x20Owner\x20only.');const {exec:_0x24984d}=require(_0xa8c8c9(0x199));await _0x51a8d8(_0xa8c8c9(0x118)),await new Promise(_0x5cb6f9=>setTimeout(_0x5cb6f9,0x5dc));if(process.env.PM2_HOME||process.env.pm_id!==undefined)_0x24984d(_0xa8c8c9(0x12d),_0x3e3e12=>{const _0x40df15=_0xa8c8c9;if(_0x3e3e12)console['error'](_0x40df15(0x13d),_0x3e3e12['message']);});else{if(process.env.PTERODACTYL||process.env.SERVER_MEMORY)process[_0xa8c8c9(0x166)](0x0);else process.env.DYNO?_0x24984d('heroku\x20restart',_0x5de5bb=>{const _0x8aad99=_0xa8c8c9;_0x5de5bb&&(console[_0x8aad99(0x17c)](_0x8aad99(0xfe),_0x5de5bb[_0x8aad99(0x1a2)]),process[_0x8aad99(0x166)](0x0));}):process[_0xa8c8c9(0x166)](0x0);}}),cast({'pattern':a18_0x5a63e6(0x130),'desc':'Save\x20replied\x20status\x20to\x20your\x20DM','category':a18_0x5a63e6(0x10d),'filename':__filename},saveStatusHandler),cast({'pattern':'🙏','dontAddCommandList':!![],'filename':__filename},saveStatusHandler),cast({'pattern':'📥','dontAddCommandList':!![],'filename':__filename},saveStatusHandler),cast({'pattern':'💾','dontAddCommandList':!![],'filename':__filename},saveStatusHandler),cast({'pattern':'📌','dontAddCommandList':!![],'filename':__filename},saveStatusHandler),cast({'pattern':'🔖','dontAddCommandList':!![],'filename':__filename},saveStatusHandler),cast({'pattern':'⬇️','dontAddCommandList':!![],'filename':__filename},saveStatusHandler);async function saveStatusHandler(_0x52ee24,_0x3bfe3e,_0x3f4260,{sender:_0x3341fa}){const _0xc787c1=a18_0x5a63e6;try{if(!_0x3f4260[_0xc787c1(0x10b)])return;const _0x3f3e5d=_0x3f4260[_0xc787c1(0x1a2)]?.[_0xc787c1(0xe4)]?.[_0xc787c1(0x142)];if(!_0x3f3e5d?.[_0xc787c1(0x192)]?.[_0xc787c1(0xf2)](_0xc787c1(0xf5)))return;const _0x1c985f=_0x3f3e5d[_0xc787c1(0xdc)];if(!_0x1c985f)return;const _0x12be56=_0x1c985f[_0xc787c1(0x136)]||_0x1c985f[_0xc787c1(0x107)]||_0x1c985f['audioMessage'];if(!_0x12be56)return;const _0x45dc6a=await _0x3f4260[_0xc787c1(0x10b)][_0xc787c1(0x180)](),_0x102091=_0x12be56[_0xc787c1(0x157)]||'',_0x147217=_0x3341fa;if(_0x12be56[_0xc787c1(0x155)]?.[_0xc787c1(0x108)](_0xc787c1(0x17f)))await _0x52ee24[_0xc787c1(0x16c)](_0x147217,{'image':_0x45dc6a,'caption':_0x102091},{'quoted':_0x3bfe3e});else{if(_0x12be56[_0xc787c1(0x155)]?.[_0xc787c1(0x108)](_0xc787c1(0x125)))await _0x52ee24[_0xc787c1(0x16c)](_0x147217,{'video':_0x45dc6a,'caption':_0x102091},{'quoted':_0x3bfe3e});else _0x12be56[_0xc787c1(0x155)]?.[_0xc787c1(0x108)](_0xc787c1(0x16b))&&await _0x52ee24['sendMessage'](_0x147217,{'audio':_0x45dc6a,'mimetype':_0x12be56['mimetype'],'ptt':_0x12be56[_0xc787c1(0x129)]||![]},{'quoted':_0x3bfe3e});}}catch(_0xb65797){console['error'](_0xc787c1(0x17d),_0xb65797);}}cast({'pattern':'vv','desc':a18_0x5a63e6(0x197),'category':a18_0x5a63e6(0x10d),'filename':__filename},vvHandler),cast({'pattern':'❤️','dontAddCommandList':!![],'filename':__filename},vvHandler),cast({'pattern':'🌝','dontAddCommandList':!![],'filename':__filename},vvHandler),cast({'pattern':'😂','dontAddCommandList':!![],'filename':__filename},vvHandler),cast({'pattern':'😡','dontAddCommandList':!![],'filename':__filename},vvHandler),cast({'pattern':'😭','dontAddCommandList':!![],'filename':__filename},vvHandler),cast({'pattern':'😳','dontAddCommandList':!![],'filename':__filename},vvHandler),cast({'pattern':'😲','dontAddCommandList':!![],'filename':__filename},vvHandler),cast({'pattern':'😢','dontAddCommandList':!![],'filename':__filename},vvHandler),cast({'pattern':'😔','dontAddCommandList':!![],'filename':__filename},vvHandler),cast({'pattern':'🥺','dontAddCommandList':!![],'filename':__filename},vvHandler),cast({'pattern':'🫴','dontAddCommandList':!![],'filename':__filename},vvHandler),cast({'pattern':'😐','dontAddCommandList':!![],'filename':__filename},vvHandler),cast({'pattern':'😂','dontAddCommandList':!![],'filename':__filename},vvHandler),cast({'pattern':'❤️','dontAddCommandList':!![],'filename':__filename},vvHandler),cast({'pattern':'🌝','dontAddCommandList':!![],'filename':__filename},vvHandler);async function vvHandler(_0x54086c,_0x16e55a,_0x51bf50,{sender:_0x236068,senderNumber:_0x1f932a}){const _0x157e6b=a18_0x5a63e6;try{if(!_0x51bf50[_0x157e6b(0x10b)])return;const _0x25801f=_0x51bf50[_0x157e6b(0x1a2)]?.['extendedTextMessage']?.[_0x157e6b(0x142)]?.[_0x157e6b(0xdc)];if(!_0x25801f)return;const _0x2d4271=_0x25801f[_0x157e6b(0x136)]||_0x25801f[_0x157e6b(0x107)]||_0x25801f[_0x157e6b(0x121)];if(!_0x2d4271?.[_0x157e6b(0xf0)])return;const _0x1c5178=await _0x51bf50[_0x157e6b(0x10b)][_0x157e6b(0x180)](),_0x444e01=_0x2d4271[_0x157e6b(0x157)]||'',_0x39e932=_0x236068||_0x1f932a+_0x157e6b(0x128),_0xf1bdbf=_0x51bf50[_0x157e6b(0x10b)]?.[_0x157e6b(0x122)]||{'key':{'remoteJid':_0x16e55a[_0x157e6b(0x11a)][_0x157e6b(0x192)],'fromMe':![],'id':_0x51bf50[_0x157e6b(0x10b)]?.['id'],'participant':_0x51bf50['quoted']?.[_0x157e6b(0x150)]},'message':_0x25801f};if(_0x2d4271[_0x157e6b(0x155)]?.['startsWith'](_0x157e6b(0x17f)))await _0x54086c['sendMessage'](_0x39e932,{'image':_0x1c5178,'caption':_0x444e01},{'quoted':_0xf1bdbf});else{if(_0x2d4271[_0x157e6b(0x155)]?.['startsWith'](_0x157e6b(0x125)))await _0x54086c[_0x157e6b(0x16c)](_0x39e932,{'video':_0x1c5178,'caption':_0x444e01},{'quoted':_0xf1bdbf});else _0x2d4271['mimetype']?.[_0x157e6b(0x108)](_0x157e6b(0x16b))&&await _0x54086c['sendMessage'](_0x39e932,{'audio':_0x1c5178,'mimetype':_0x2d4271['mimetype'],'ptt':_0x2d4271[_0x157e6b(0x129)]||![]},{'quoted':_0xf1bdbf});}}catch(_0x18a198){console['error'](_0x18a198);}}cast({'pattern':'setsudo','desc':a18_0x5a63e6(0x104),'category':a18_0x5a63e6(0x10d),'filename':__filename},async(_0x12dc3c,_0x1090dc,_0x4a9423,{isOwner:_0x512866,reply:_0x4440ae,args:_0x4fb59c})=>{const _0x32e0ca=a18_0x5a63e6;if(!_0x512866)return _0x4440ae(_0x32e0ca(0x17a));let _0x2138f7=_0x4a9423[_0x32e0ca(0x174)]&&_0x4a9423[_0x32e0ca(0x174)][0x0]||_0x4a9423[_0x32e0ca(0x10b)]&&_0x4a9423[_0x32e0ca(0x10b)][_0x32e0ca(0x150)]||(_0x4fb59c[0x0]?_0x4fb59c[0x0][_0x32e0ca(0x178)](/\D/g,'')+'@s.whatsapp.net':null);if(!_0x2138f7)return _0x4440ae('⚠️\x20Mention,\x20reply,\x20or\x20provide\x20a\x20number.');const _0xe77435=_0x2138f7[_0x32e0ca(0x182)]('@')[0x0][_0x32e0ca(0x178)](/\D/g,'');if(isSudo(_0xe77435))return _0x4440ae(_0x32e0ca(0x175));return addSudo(_0xe77435),_0x4440ae(_0x32e0ca(0x16d)+_0xe77435+_0x32e0ca(0x144),{'mentions':[_0x2138f7]});}),cast({'pattern':a18_0x5a63e6(0x13c),'alias':[a18_0x5a63e6(0x19c)],'desc':'Revoke\x20sudo\x20access','category':a18_0x5a63e6(0x10d),'filename':__filename},async(_0x464448,_0x57d323,_0x19f075,{isOwner:_0x58365a,reply:_0x32a63c,args:_0x597322})=>{const _0x11b318=a18_0x5a63e6;if(!_0x58365a)return _0x32a63c(_0x11b318(0x17a));let _0x155b22=_0x19f075[_0x11b318(0x174)]&&_0x19f075[_0x11b318(0x174)][0x0]||_0x19f075['quoted']&&_0x19f075[_0x11b318(0x10b)][_0x11b318(0x150)]||(_0x597322[0x0]?_0x597322[0x0][_0x11b318(0x178)](/\D/g,'')+_0x11b318(0x128):null);if(!_0x155b22)return _0x32a63c(_0x11b318(0x198));const _0x29a268=_0x155b22[_0x11b318(0x182)]('@')[0x0]['replace'](/\D/g,'');return removeSudo(_0x29a268),_0x32a63c(_0x11b318(0x117)+_0x29a268+'.',{'mentions':[_0x155b22]});}),cast({'pattern':a18_0x5a63e6(0x18c),'desc':a18_0x5a63e6(0x119),'category':a18_0x5a63e6(0x10d),'filename':__filename},async(_0x5c6c34,_0x4b747e,_0x57a1b1,{isOwner:_0x5a082b,reply:_0x824f4c})=>{const _0x2c2be0=a18_0x5a63e6;if(!_0x5a082b)return _0x824f4c('❌\x20Owner\x20only.');const _0x476dfe=listSudo();if(!_0x476dfe[_0x2c2be0(0x132)])return _0x824f4c(_0x2c2be0(0x18b));return _0x824f4c(_0x2c2be0(0x14c)+_0x476dfe['length']+_0x2c2be0(0xf3)+_0x476dfe[_0x2c2be0(0x14b)](_0x432467=>'•\x20'+_0x432467)[_0x2c2be0(0x19a)]('\x0a'));});const appName=(config[a18_0x5a63e6(0x14d)]||'')['toLowerCase'](),authToken=config[a18_0x5a63e6(0x152)]||'',HEROKU=!!(authToken&&appName),P=config[a18_0x5a63e6(0x165)]||'/',herokuHeaders={'Accept':a18_0x5a63e6(0xdf),'Authorization':a18_0x5a63e6(0x185)+authToken,'Content-Type':a18_0x5a63e6(0x14a)},hFetch=(_0x28244b,_0x5a1209)=>fetch('https://api.heroku.com/apps/'+appName+'/config-vars',{'method':_0x28244b,'headers':herokuHeaders,..._0x5a1209?{'body':JSON['stringify'](_0x5a1209)}:{}});HEROKU&&(cast({'pattern':a18_0x5a63e6(0x164),'alias':['getallvar'],'desc':'Get\x20all\x20Heroku\x20vars','category':'owner','fromMe':!![],'filename':__filename},async(_0x5a056c,_0x505d41,_0x445a24,{from:_0x18ec42,reply:_0x2dc696})=>{const _0x425402=a18_0x5a63e6;try{const _0x7999de=await hFetch('GET');if(!_0x7999de['ok'])return _0x2dc696(_0x425402(0x145));const _0x17220d=await _0x7999de[_0x425402(0x10c)]();let _0x473ea8='*'+appName+_0x425402(0x134);Object['entries'](_0x17220d)['forEach'](([_0x1e0a0f,_0x18792c])=>{const _0x1391f0=_0x425402;_0x473ea8+='*'+_0x1e0a0f+_0x1391f0(0x13a)+(_0x18792c||'')+'`\x0a';}),await _0x5a056c[_0x425402(0x16c)](_0x18ec42,{'text':_0x473ea8},{'quoted':_0x505d41});}catch(_0x254748){_0x2dc696(_0x425402(0xe9)+_0x254748[_0x425402(0x1a2)]);}}),cast({'pattern':a18_0x5a63e6(0x18f),'alias':['addvar'],'desc':a18_0x5a63e6(0xfa),'category':a18_0x5a63e6(0x10d),'fromMe':!![],'filename':__filename},async(_0x5af880,_0xd31e14,_0x2a0476,{q:_0x2ee9a5,reply:_0x761a70})=>{const _0x56aa65=a18_0x5a63e6;try{if(!_0x2ee9a5||!_0x2ee9a5[_0x56aa65(0xf2)](':'))return _0x761a70(_0x56aa65(0xe3)+P+_0x56aa65(0xfb));const _0x30267d=_0x2ee9a5[_0x56aa65(0x14e)](':'),_0x4a29fd=_0x2ee9a5[_0x56aa65(0xf1)](0x0,_0x30267d)['toUpperCase']()[_0x56aa65(0x112)](),_0x562bc9=_0x2ee9a5[_0x56aa65(0xf1)](_0x30267d+0x1)[_0x56aa65(0x112)](),_0x43d942=await hFetch(_0x56aa65(0x146),{[_0x4a29fd]:_0x562bc9});if(_0x43d942['ok'])_0x761a70(_0x56aa65(0x151)+_0x4a29fd+_0x56aa65(0xeb)+_0x562bc9+'`');else _0x761a70(_0x56aa65(0x189));}catch(_0x4d92e4){_0x761a70(_0x56aa65(0xe9)+_0x4d92e4['message']);}}),cast({'pattern':a18_0x5a63e6(0x140),'desc':a18_0x5a63e6(0x18d),'category':a18_0x5a63e6(0x10d),'fromMe':!![],'filename':__filename},async(_0x352d74,_0x405ce6,_0x9cc768,{q:_0xcd3d0,reply:_0x57a6bf})=>{const _0x3b90df=a18_0x5a63e6;try{if(!_0xcd3d0||!_0xcd3d0[_0x3b90df(0xf2)](':'))return _0x57a6bf(_0x3b90df(0xe3)+P+_0x3b90df(0xf7));const _0x129961=_0xcd3d0[_0x3b90df(0x14e)](':'),_0x253b01=_0xcd3d0['slice'](0x0,_0x129961)[_0x3b90df(0xff)]()[_0x3b90df(0x112)](),_0x468b31=_0xcd3d0[_0x3b90df(0xf1)](_0x129961+0x1)[_0x3b90df(0x112)](),_0x3a7064=await hFetch(_0x3b90df(0x146),{[_0x253b01]:_0x468b31});if(_0x3a7064['ok'])_0x57a6bf(_0x3b90df(0x151)+_0x253b01+_0x3b90df(0x105)+_0x468b31+'`');else _0x57a6bf(_0x3b90df(0x113));}catch(_0x567cfa){_0x57a6bf('❌\x20Error:\x20'+_0x567cfa[_0x3b90df(0x1a2)]);}}),cast({'pattern':a18_0x5a63e6(0x17e),'desc':'Get\x20a\x20specific\x20Heroku\x20var','category':a18_0x5a63e6(0x10d),'fromMe':!![],'filename':__filename},async(_0x2f9059,_0x35e676,_0x59b73c,{q:_0x56328b,reply:_0x2a35d0})=>{const _0x216ea8=a18_0x5a63e6;try{if(!_0x56328b)return _0x2a35d0(_0x216ea8(0xe3)+P+_0x216ea8(0x120));const _0x550af8=await hFetch(_0x216ea8(0x161));if(!_0x550af8['ok'])return _0x2a35d0(_0x216ea8(0x12b));const _0x45ac95=await _0x550af8[_0x216ea8(0x10c)](),_0xc0c9fe=_0x56328b[_0x216ea8(0xff)]()[_0x216ea8(0x112)]();if(!(_0xc0c9fe in _0x45ac95))return _0x2a35d0('*'+_0xc0c9fe+'*\x20does\x20not\x20exist\x20in\x20the\x20app\x20vars.');_0x2a35d0('*'+_0xc0c9fe+_0x216ea8(0x13a)+_0x45ac95[_0xc0c9fe]+'`');}catch(_0xb6925d){_0x2a35d0('❌\x20Error:\x20'+_0xb6925d['message']);}}));module[a18_0x5a63e6(0x195)]={'registerAntiCall':registerAntiCall,'registerAntiViewOnce':registerAntiViewOnce};
+'use strict';
+
+const { cast, makeSmartQuote, applyFont } = require('../cast');
+const config = require('../config');
+const botdb = require('../lib/botdb');
+const fetch = require('node-fetch');
+const axios = require('axios');
+
+const { downloadMediaMessage } = require('@whiskeysockets/baileys');
+const { isSudo, addSudo, removeSudo, listSudo } = require('../lib/botdb');
+
+// ── ANTI CALL ─────────────────────────────────────────
+// In index.js, inside the 'connection open' block add:
+//   const { registerAntiCall } = require('./plugins/anticall');
+//   registerAntiCall(conn);
+
+const ANTICALL_MSG =
+  `Hello! This is *${config.BOT_NAME || 'NEXUS-MD'}*\n\n` +
+  `Sorry, I cannot receive calls at this time.\n` +
+  `Please send a text message instead. 👸`;
+
+function loadSettings()        { return {}; } // botdb handles persistence
+function saveSettings()        {}              // no-op — botdb handles it
+function getMode(botNum)       { return botdb.getAntiCall(botNum); }
+function setMode(botNum, mode) { botdb.setAntiCall(botNum, mode); }
+
+const warnMap = {};
+
+// ── ANTICALL command ──────────────────────────────────────────────────────────
+cast({
+  pattern: 'anticall',
+  alias: ['callblock', 'blockcall'],
+  desc: 'Configure anticall — block all calls or by country code',
+  category: 'owner',
+  use: '<all | 212,91 | off>',
+  filename: __filename,
+}, async (conn, mek, m, { from, q, botNumber, isOwner, reply }) => {
+  if (!isOwner) return reply('🚫 Owner only.');
+
+  const key = botNumber;
+  const cur = getMode(key) || 'false';
+  const arg = q ? q.toLowerCase().trim() : '';
+
+  // Turn off
+  if (arg === 'off' || arg === 'deact' || arg === 'disable') {
+    if (cur === 'false') return reply('*AntiCall is already disabled!*');
+    getMode(key) = 'false';
+    saveSettings(settings);
+    return reply('*✅ AntiCall disabled successfully!*');
+  }
+
+  // Show current status
+  if (!arg) {
+    const status = cur === 'false' ? 'Not set / Disabled' : `Active — blocking: *${cur}*`;
+    return reply(`*AntiCall Status:* ${status}\n\n*Usage:*\n:anticall all → block all calls\n:anticall 212,91 → block by country code\n:anticall off → disable`);
+  }
+
+  // Set to all
+  if (arg === 'all') {
+    getMode(key) === 'all';
+    saveSettings(settings);
+    return reply('*✅ AntiCall set to block ALL calls!*');
+  }
+
+  // Set country codes
+  const codes = arg.split(',').map(c => parseInt(c.trim())).filter(n => !isNaN(n));
+  if (!codes.length) return reply('*❌ Invalid country codes.*\nExample: :anticall 212,91,231');
+  getMode(key) === codes.join(',');
+  saveSettings(settings);
+  reply(`*✅ AntiCall set — blocking calls from country codes: ${getMode(key)}*`);
+});
+
+// ── registerAntiCall — hook call events ───────────────────────────────────────
+function registerAntiCall(conn) {
+  conn.ev.on('call', async (calls) => {
+    for (const call of calls) {
+      try {
+        if (call.status !== 'offer') continue;
+
+        const botNumber = conn.user.id.split(':')[0];
+        const setting   = getMode(botNumber) || 'false';
+        if (setting === 'false') continue;
+
+        // Check if caller matches country code filter or setting is 'all'
+        const caller = call.from || '';
+        let shouldBlock = false;
+
+        if (setting === 'all') {
+          shouldBlock = true;
+        } else {
+          const codes = setting.split(',').map(c => c.trim());
+          shouldBlock = codes.some(code => caller.startsWith(code));
+        }
+
+        if (!shouldBlock) continue;
+
+        // Decline the call
+        await conn.rejectCall(call.id, call.from);
+
+        // Track warns
+        if (!warnMap[caller]) warnMap[caller] = { warn: 0 };
+        if (warnMap[caller].warn < 2) {
+          await conn.sendMessage(caller, { text: ANTICALL_MSG }, { quoted: mek });
+        }
+        warnMap[caller].warn++;
+
+        await conn.sendMessage(caller, {
+          text: `*_${warnMap[caller].warn} Call rejected from @${caller.split('@')[0]}..!!_*`,
+          mentions: [caller]
+        }, { quoted: mek });
+
+      } catch (e) {
+        console.error('anticall error:', e.message);
+      }
+    }
+  });
+  console.log('✅ AntiCall listener registered');
+}
+
+// ── ANTI VIEW ONCE ────────────────────────────────────
+// Hook: call registerAntiViewOnce(conn) in both index files on connection open
+
+// ── botdb helpers (reuse group_settings table with a special key) ──────────
+const KEY = 'antiviewonce';
+
+function isEnabled(botNumber) {
+  try {
+    return botdb.kvGet('antiviewonce:' + botNumber, 'false') === 'true';
+  } catch (e) { return false; }
+}
+function setEnabled(botNumber, val) {
+  try {
+    botdb.kvSet('antiviewonce:' + botNumber, val ? 'true' : 'false');
+  } catch (e) {}
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ANTIVIEWONCE command — owner only
+// ─────────────────────────────────────────────────────────────────────────────
+cast({
+  pattern: 'antiviewonce',
+  alias: ['antivv', 'avv'],
+  desc: 'Turn on/off auto ViewOnce downloader',
+  category: 'owner',
+  use: '<on/off>',
+  filename: __filename,
+}, async (conn, mek, m, { from, q, botNumber, isOwner, reply }) => {
+  if (!isOwner) return reply('🚫 Owner only.');
+
+  const arg = q ? q.toLowerCase().trim() : '';
+  const cur = isEnabled(botNumber);
+
+  if (!arg) {
+    return reply(`*AntiViewOnce is currently ${cur ? 'ON ✅' : 'OFF ❌'}*\nUse :antiviewonce on/off`);
+  }
+
+  if (['on', 'enable', 'act'].includes(arg)) {
+    if (cur) return reply('*AntiViewOnce is already enabled 👸❤️🧸*');
+    setEnabled(botNumber, true);
+    return reply('*✅ AntiViewOnce successfully enabled 👸❤️🧸*');
+  }
+
+  if (['off', 'disable', 'deact'].includes(arg)) {
+    if (!cur) return reply('*AntiViewOnce is already disabled 👸❤️🧸*');
+    setEnabled(botNumber, false);
+    return reply('*✅ AntiViewOnce successfully disabled 👸❤️🧸*');
+  }
+
+  reply('*Use on/off to enable/disable AntiViewOnce!*');
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// registerAntiViewOnce — hook into messages.upsert to catch viewonce messages
+// Call this in both index files inside the connection open handler
+// ─────────────────────────────────────────────────────────────────────────────
+function registerAntiViewOnce(conn) {
+  conn.ev.on('messages.upsert', async ({ messages }) => {
+    for (const mek of messages) {
+      try {
+        if (!mek.message) continue;
+
+        const botNumber = conn.user?.id?.split(':')[0];
+        if (!isEnabled(botNumber)) continue;
+
+        // Detect viewonce message types
+        const vvTypes = ['viewOnceMessage', 'viewOnceMessageV2', 'viewOnceMessageV2Extension'];
+        const vvKey   = vvTypes.find(t => mek.message[t]);
+        if (!vvKey) continue;
+
+        // Don't process bot's own messages
+        if (mek.key?.fromMe) continue;
+
+        const innerMsg = mek.message[vvKey]?.message || mek.message[vvKey];
+        const mediaKey = ['imageMessage', 'videoMessage', 'audioMessage'].find(t => innerMsg?.[t]);
+        if (!mediaKey) continue;
+
+        const sender   = mek.key.participant || mek.key.remoteJid || 'Unknown';
+        const chatId   = mek.key.remoteJid;
+        const ownerJid = botNumber + '@s.whatsapp.net';
+
+        // Download the viewonce media
+        const buffer = await downloadMediaMessage(
+          { key: mek.key, message: { [mediaKey]: innerMsg[mediaKey] } },
+          'buffer', {},
+          { logger: undefined, reuploadRequest: conn.updateMediaMessage }
+        );
+
+        const mType    = mediaKey.replace('Message', '');
+        const caption  =
+          `*[VIEWONCE FOUND 👀 100% DOWNLOADED]*\n\n` +
+          `*Sender:* @${sender.split('@')[0]}\n` +
+          `*Chat:* ${chatId}\n` +
+          `*Time:* ${new Date().toLocaleTimeString()}`;
+
+        await conn.sendMessage(ownerJid, {
+          [mType]: buffer,
+          caption,
+          mimetype: innerMsg[mediaKey]?.mimetype,
+          mentions: [sender]
+        });
+
+      } catch (e) {
+        console.error('antiviewonce listener error:', e.message);
+      }
+    }
+  });
+  console.log('✅ AntiViewOnce listener registered');
+}
+
+// ── PAIR ──────────────────────────────────────────────
+// Usage: /pair 2348012345678
+
+// URL of your NEXUS-MD pairing server
+const PAIR_SERVER = process.env.PAIR_SERVER_URL || 'https://repo-jjl7.onrender.com';
+
+// Prevent duplicate requests
+const pendingSessions = new Map();
+setInterval(() => {
+    const cutoff = Date.now() - 10 * 60 * 1000;
+    for (const [k, v] of pendingSessions) {
+        if (v.ts < cutoff) pendingSessions.delete(k);
+    }
+}, 10 * 60 * 1000);
+
+cast({
+    pattern: 'pair',
+    alias: ['getpair', 'getsession', 'pairsession'],
+    desc: 'Generate a NEXUS-MD session pairing code for a number',
+    category: 'owner',
+    react: '🔗',
+    filename: __filename,
+}, async (conn, mek, m, { q, reply, isOwner, from }) => {
+    if (!isOwner) return reply('❌ This command is for the bot owner only.');
+
+    const rawNumber = (q || '').trim().replace(/\D/g, '');
+
+    if (!rawNumber || rawNumber.length < 10) {
+        return reply(
+            `*🔗 NEXUS-MD — PAIR SESSION*\n\n` +
+            `Generate a pairing code for any WhatsApp number.\n\n` +
+            `*Usage:* \`/pair 2348012345678\`\n` +
+            `*Format:* Country code + number, digits only.\n\n` +
+            `_The user will also receive their session ID in DMs once linked._`
+        );
+    }
+
+    if (rawNumber.length > 15) {
+        return reply('❌ Invalid number. Include country code e.g. `2348012345678`');
+    }
+
+    if (pendingSessions.has(rawNumber)) {
+        return reply(`⚠️ A pairing request is already running for *+${rawNumber}*. Please wait.`);
+    }
+
+    pendingSessions.set(rawNumber, { ts: Date.now() });
+    await reply(`⏳ Generating pairing code for *+${rawNumber}*...`);
+
+    try {
+        const res = await axios.get(`${PAIR_SERVER}/code?number=${rawNumber}`, { timeout: 30000 });
+        const { code } = res.data;
+
+        if (!code) throw new Error('No code returned from server');
+
+        const formatted = code.replace(/(.{4})(?=.)/g, '$1-');
+
+        await reply(
+            `*✅ PAIRING CODE GENERATED*\n\n` +
+            `*Number:* +${rawNumber}\n` +
+            `*Code:* \`${formatted}\`\n\n` +
+            `_Enter this in:_\n` +
+            `WhatsApp → Linked Devices → Link with phone number`
+        );
+
+        // Try to DM the user directly
+        try {
+            const userJid = rawNumber + '@s.whatsapp.net';
+            await conn.sendMessage(userJid, {
+                text:
+                    `👑 *NEXUS-MD — Pairing Code*\n\n` +
+                    `Your pairing code is:\n\n` +
+                    `*${formatted}*\n\n` +
+                    `📱 *How to use:*\n` +
+                    `1. Open WhatsApp\n` +
+                    `2. Go to Linked Devices\n` +
+                    `3. Tap "Link a Device"\n` +
+                    `4. Choose "Link with phone number"\n` +
+                    `5. Enter the code above\n\n` +
+                    `_Your session ID will be sent here automatically once linked._`
+            }, { quoted: mek });
+        } catch {
+            await reply(`⚠️ Could not DM +${rawNumber} directly — give them the code manually.`);
+        }
+
+    } catch (err) {
+        const msg = err?.response?.data?.error || err.message || 'Unknown error';
+        await reply(`❌ Failed to generate pairing code: ${msg}`);
+    } finally {
+        pendingSessions.delete(rawNumber);
+    }
+});
+
+// ── RESTART ───────────────────────────────────────────
+const { commands } = require('../cast');
+const {sleep} = require('../lib/functions')
+
+cast({
+  pattern: 'restart',
+  alias:   ['reboot'],
+  desc:    'Restart the bot',
+  category: 'owner',
+  filename: __filename,
+}, async (conn, mek, m, { isOwner, reply }) => {
+  if (!isOwner) return reply('⛔ Owner only.');
+  const { exec } = require('child_process');
+
+  await reply('♻️ *Restarting NEXUS-MD...*');
+  await new Promise(r => setTimeout(r, 1500));
+
+  // Detect platform and restart accordingly
+  if (process.env.PM2_HOME || process.env.pm_id !== undefined) {
+    // PM2 environment
+    exec('pm2 restart all', (err) => {
+      if (err) console.error('[restart] pm2 error:', err.message);
+    });
+  } else if (process.env.PTERODACTYL || process.env.SERVER_MEMORY) {
+    // Pterodactyl panel — just exit, panel auto-restarts
+    process.exit(0);
+  } else if (process.env.DYNO) {
+    // Heroku
+    exec('heroku restart', (err) => {
+      if (err) { console.error('[restart] heroku error:', err.message); process.exit(0); }
+    });
+  } else {
+    // Render, Railway, VPS — exit and let process manager restart
+    process.exit(0);
+  }
+})
+
+// ── STATUS SAVER — save ───────────────────────────────
+cast({
+
+  pattern: "save",
+
+  desc: "Save replied status to your DM",
+
+  category: 'owner',
+
+  filename: __filename
+
+}, saveStatusHandler);
+
+// emoji triggers
+
+cast({ pattern: "🙏", dontAddCommandList: true, filename: __filename }, saveStatusHandler);
+cast({ pattern: "📥", dontAddCommandList: true, filename: __filename }, saveStatusHandler);
+cast({ pattern: "💾", dontAddCommandList: true, filename: __filename }, saveStatusHandler);
+cast({ pattern: "📌", dontAddCommandList: true, filename: __filename }, saveStatusHandler);
+cast({ pattern: "🔖", dontAddCommandList: true, filename: __filename }, saveStatusHandler);
+cast({ pattern: "⬇️", dontAddCommandList: true, filename: __filename }, saveStatusHandler);
+
+async function saveStatusHandler(conn, mek, m, { sender }) {
+
+  try {
+
+    if (!m.quoted) return;
+
+    // check if quoted message is from status
+
+    const context = m.message?.extendedTextMessage?.contextInfo;
+
+    if (!context?.remoteJid?.includes("status@broadcast")) {
+
+      return; // not a status reply
+
+    }
+
+    const quotedMsg = context.quotedMessage;
+
+    if (!quotedMsg) return;
+
+    const mediaMessage =
+
+      quotedMsg.imageMessage ||
+
+      quotedMsg.videoMessage ||
+
+      quotedMsg.audioMessage;
+
+    if (!mediaMessage) return;
+
+    // download media
+
+    const buffer = await m.quoted.download();
+
+    const caption = mediaMessage.caption || "";
+
+    const targetJid = sender;
+
+    if (mediaMessage.mimetype?.startsWith("image")) {
+      await conn.sendMessage(targetJid, {
+        image: buffer,
+        caption: caption
+      }, { quoted: mek });
+    } else if (mediaMessage.mimetype?.startsWith("video")) {
+      await conn.sendMessage(targetJid, {
+        video: buffer,
+        caption: caption
+      }, { quoted: mek });
+    } else if (mediaMessage.mimetype?.startsWith("audio")) {
+      await conn.sendMessage(targetJid, {
+        audio: buffer,
+        mimetype: mediaMessage.mimetype,
+        ptt: mediaMessage.ptt || false
+      }, { quoted: mek });
+    }
+
+  } catch (err) {
+
+    console.error("Save Status Error:", err);
+
+  }
+
+}
+
+// ── VIEW ONCE — vv ────────────────────────────────────
+
+// /vv + emoji triggers (sends VV media to command user's DM silently)
+
+cast({
+  pattern: "vv",
+  desc: "Get view once (send to DM).",
+  category: 'owner',
+  filename: __filename
+}, vvHandler);
+
+cast({
+  pattern: "❤️",
+  dontAddCommandList: true,
+  filename: __filename
+}, vvHandler);
+
+cast({
+
+  pattern: "🌝",
+  dontAddCommandList: true,
+  filename: __filename
+}, vvHandler);
+
+cast({
+  pattern: "😂",
+  dontAddCommandList: true,
+  filename: __filename
+}, vvHandler);
+cast({ pattern: "😡", dontAddCommandList: true, filename: __filename }, vvHandler);
+cast({ pattern: "😭", dontAddCommandList: true, filename: __filename }, vvHandler);
+cast({ pattern: "😳", dontAddCommandList: true, filename: __filename }, vvHandler);
+cast({ pattern: "😲", dontAddCommandList: true, filename: __filename }, vvHandler);
+cast({ pattern: "😢", dontAddCommandList: true, filename: __filename }, vvHandler);
+cast({ pattern: "😔", dontAddCommandList: true, filename: __filename }, vvHandler);
+cast({ pattern: "🥺", dontAddCommandList: true, filename: __filename }, vvHandler);
+cast({ pattern: "🫴", dontAddCommandList: true, filename: __filename }, vvHandler);
+cast({ pattern: "😐", dontAddCommandList: true, filename: __filename }, vvHandler);
+cast({ pattern: "😂", dontAddCommandList: true, filename: __filename }, vvHandler);
+cast({ pattern: "❤️", dontAddCommandList: true, filename: __filename }, vvHandler);
+cast({ pattern: "🌝", dontAddCommandList: true, filename: __filename }, vvHandler);
+
+async function vvHandler(conn, mek, m, { sender, senderNumber }) {
+  try {
+
+    if (!m.quoted) return;
+
+    const qmessage =
+      m.message?.extendedTextMessage?.contextInfo?.quotedMessage;
+
+    if (!qmessage) return;
+
+    const mediaMessage =
+      qmessage.imageMessage ||
+      qmessage.videoMessage ||
+      qmessage.audioMessage;
+
+    if (!mediaMessage?.viewOnce) return;
+
+    const buff = await m.quoted.download();
+    const cap = mediaMessage.caption || "";
+
+    // Send to owner DM, quoted to the original view once message
+    const targetJid = sender || `${senderNumber}@s.whatsapp.net`;
+    const quotedKey = m.quoted?.fakeObj || {
+      key: {
+        remoteJid:   mek.key.remoteJid,
+        fromMe:      false,
+        id:          m.quoted?.id,
+        participant: m.quoted?.sender,
+      },
+      message: qmessage,
+    };
+
+    if (mediaMessage.mimetype?.startsWith("image")) {
+      await conn.sendMessage(targetJid, {
+        image: buff,
+        caption: cap
+      }, { quoted: quotedKey });
+    } else if (mediaMessage.mimetype?.startsWith("video")) {
+      await conn.sendMessage(targetJid, {
+        video: buff,
+        caption: cap
+      }, { quoted: quotedKey });
+    } else if (mediaMessage.mimetype?.startsWith("audio")) {
+      await conn.sendMessage(targetJid, {
+        audio: buff,
+        mimetype: mediaMessage.mimetype,
+        ptt: mediaMessage.ptt || false
+      }, { quoted: quotedKey });
+    }
+
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+// ── SUDO — setsudo/removesudo/sudolist ────────────────
+
+cast({
+  pattern: 'setsudo',
+  desc: 'Grant sudo access to a user (mention, reply or number)',
+  category: 'owner',
+  filename: __filename,
+}, async (conn, mek, m, { isOwner, reply, args }) => {
+  if (!isOwner) return reply('❌ Owner only.');
+
+  let userJid =
+    (m.mentionedJid && m.mentionedJid[0]) ||
+    (m.quoted && m.quoted.sender) ||
+    (args[0] ? args[0].replace(/\D/g,'') + '@s.whatsapp.net' : null);
+
+  if (!userJid) return reply('⚠️ Mention, reply, or provide a number.');
+
+  const num = userJid.split('@')[0].replace(/\D/g,'');
+  if (isSudo(num)) return reply('✅ User already has sudo access.');
+  addSudo(num);
+  return reply(`✅ @${num} granted sudo access.`, { mentions: [userJid] });
+});
+
+cast({
+  pattern: 'removesudo',
+  alias: ['unsudo'],
+  desc: 'Revoke sudo access',
+  category: 'owner',
+  filename: __filename,
+}, async (conn, mek, m, { isOwner, reply, args }) => {
+  if (!isOwner) return reply('❌ Owner only.');
+
+  let userJid =
+    (m.mentionedJid && m.mentionedJid[0]) ||
+    (m.quoted && m.quoted.sender) ||
+    (args[0] ? args[0].replace(/\D/g,'') + '@s.whatsapp.net' : null);
+
+  if (!userJid) return reply('⚠️ Mention, reply, or provide a number.');
+
+  const num = userJid.split('@')[0].replace(/\D/g,'');
+  removeSudo(num);
+  return reply(`✅ Sudo access revoked for @${num}.`, { mentions: [userJid] });
+});
+
+cast({
+  pattern: 'sudolist',
+  desc: 'List all sudo users',
+  category: 'owner',
+  filename: __filename,
+}, async (conn, mek, m, { isOwner, reply }) => {
+  if (!isOwner) return reply('❌ Owner only.');
+  const list = listSudo();
+  if (!list.length) return reply('No sudo users set.');
+  return reply(`*Sudo Users (${list.length}):*\n${list.map(n=>`• ${n}`).join('\n')}`);
+});
+
+// ── HEROKU VARS ───────────────────────────────────────
+
+const appName   = (config.HEROKU_APP_NAME || '').toLowerCase();
+const authToken = config.HEROKU_API_KEY   || '';
+const HEROKU    = !!(authToken && appName);
+const P = config.PREFIX || '/';
+
+const herokuHeaders = {
+  Accept: 'application/vnd.heroku+json; version=3',
+  Authorization: `Bearer ${authToken}`,
+  'Content-Type': 'application/json'
+};
+
+const hFetch = (method, body) =>
+  fetch(`https://api.heroku.com/apps/${appName}/config-vars`, {
+    method,
+    headers: herokuHeaders,
+    ...(body ? { body: JSON.stringify(body) } : {})
+  });
+
+// ── heroku var commands (only registered if HEROKU creds exist) ───────
+if (HEROKU) {
+  cast({ pattern: 'allvar', alias: ['getallvar'], desc: 'Get all Heroku vars', category: 'owner', fromMe: true, filename: __filename },
+  async (conn, mek, m, { from, reply }) => {
+    try {
+      const res = await hFetch('GET');
+      if (!res.ok) return reply('*Failed to reach Heroku. Check HEROKU_APP_NAME & HEROKU_API_KEY.*');
+      const vars = await res.json();
+      let txt = `*${appName} — Heroku Vars*\n\n`;
+      Object.entries(vars).forEach(([k, v]) => { txt += `*${k}:* \`${v || ''}\`\n`; });
+      await conn.sendMessage(from, { text: txt }, { quoted: mek });
+    } catch (e) { reply(`❌ Error: ${e.message}`); }
+  });
+
+  cast({ pattern: 'newvar', alias: ['addvar'], desc: 'Add a Heroku var (KEY:value)', category: 'owner', fromMe: true, filename: __filename },
+  async (conn, mek, m, { q, reply }) => {
+    try {
+      if (!q || !q.includes(':')) return reply(`*Example:* ${P}newvar MODE:public`);
+      const idx  = q.indexOf(':');
+      const key  = q.slice(0, idx).toUpperCase().trim();
+      const val  = q.slice(idx + 1).trim();
+      const res  = await hFetch('PATCH', { [key]: val });
+      if (res.ok) reply(`✅ *${key}* set to \`${val}\``);
+      else reply('*Failed to set var.*');
+    } catch (e) { reply(`❌ Error: ${e.message}`); }
+  });
+
+  cast({ pattern: 'setvar', desc: 'Update an existing Heroku var (KEY:value)', category: 'owner', fromMe: true, filename: __filename },
+  async (conn, mek, m, { q, reply }) => {
+    try {
+      if (!q || !q.includes(':')) return reply(`*Example:* ${P}setvar PREFIX:/`);
+      const idx  = q.indexOf(':');
+      const key  = q.slice(0, idx).toUpperCase().trim();
+      const val  = q.slice(idx + 1).trim();
+      const res  = await hFetch('PATCH', { [key]: val });
+      if (res.ok) reply(`✅ *${key}* updated to \`${val}\``);
+      else reply('*Failed to update var.*');
+    } catch (e) { reply(`❌ Error: ${e.message}`); }
+  });
+
+  cast({ pattern: 'getvar', desc: 'Get a specific Heroku var', category: 'owner', fromMe: true, filename: __filename },
+  async (conn, mek, m, { q, reply }) => {
+    try {
+      if (!q) return reply(`*Example:* ${P}getvar PREFIX`);
+      const res  = await hFetch('GET');
+      if (!res.ok) return reply('*Failed to reach Heroku.*');
+      const vars = await res.json();
+      const key  = q.toUpperCase().trim();
+      if (!(key in vars)) return reply(`*${key}* does not exist in the app vars.`);
+      reply(`*${key}:* \`${vars[key]}\``);
+    } catch (e) { reply(`❌ Error: ${e.message}`); }
+  });
+}
+
+module.exports = { registerAntiCall, registerAntiViewOnce };
