@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  nexus-md:
+    build: .
+    container_name: nexus-md
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./data:/app/data
+      - ./auth_info_baileys:/app/auth_info_baileys
+      - ./temp:/app/temp
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s

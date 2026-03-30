@@ -99,7 +99,7 @@ Copy `.env.example` to `config.env` and fill in the values:
 | `PREFIX` | ❌ | Command prefix (default: `:`) |
 | `MODE` | ❌ | `public` or `private` (default: public) |
 | `MONGO_URI` | ❌ | MongoDB URI (only needed for economy system) |
-| `PAIR_SERVER_URL` | ❌ | Pairing server URL (default: https://repo-jjl7.onrender.com) |
+| `PAIR_SERVER_URL` | ❌ | Pairing server URL |
 
 ---
 
@@ -248,7 +248,7 @@ Then bump `data/version.json` on GitHub with your new version number and changel
 ## 📞 Support
 
 - **GitHub Issues**: [github.com/Jupiterbold05/Platinum-v2.0/issues](https://github.com/Jupiterbold05/Platinum-v2.0/issues)
-- **WhatsApp Channel**: [Follow NEXUS-MD](https://whatsapp.com/channel/0029Vb7DtMV9Bb5vhQyH1U05) — updates, news and announcements
+- **WhatsApp Channel**: [Follow NEXUS-MD](https://whatsapp.com/channel/0029VavkrOID38CSgcyfbM07)
 
 ---
 
