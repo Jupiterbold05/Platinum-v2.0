@@ -10,7 +10,7 @@
     "restart": "pm2 restart Platinum-v2"
   },
   "engines": {
-    "node": "22.x"
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",
