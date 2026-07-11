@@ -23,7 +23,7 @@ Set these in your Space's **Settings → Variables and secrets**:
 | Variable | Description | Required |
 |---|---|---|
 | `SESSION_ID` | Your Baileys session ID (from pairing) | ✅ |
-| `OWNER_NUMBER` | Your WhatsApp number with country code (e.g. `2348012345678`) | ✅ |
+| `OWNER_NUMBER` | Your WhatsApp number with country code (e.g. `2347018256790`) | ✅ |
 | `OWNER_NAME` | Your display name | ✅ |
 | `BOT_NAME` | Bot display name | ✅ |
 | `PREFIX` | Command prefix (default `:`) | ✅ |
